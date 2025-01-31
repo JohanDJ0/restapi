@@ -14,3 +14,13 @@ export const pool = createPool({
   port: DB_PORT,
   database: DB_DATABASE
 });
+
+(async () => {
+  try {
+    const connection = await pool.getConnection();
+    console.log("Conexión exitosa a la base de datos.");
+    connection.release();
+  } catch (error) {
+    console.error("Error al conectar a la base de datos:", error.message);
+  }
+})();
